@@ -1,0 +1,19 @@
+{# :::::::::Inheritance Concept:::::::::::::::::: #}
+{% extends 'core/base.html'%}
+
+{% block title %} Add Page {% endblock title%}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="form-group">
+            <label for="content">Description</label>
+            <input type="text" class="form-control" id="content" name="content">
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-left: 45%;">Submit</button>
+    </form>
+{% endblock content %}

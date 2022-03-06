@@ -1,0 +1,32 @@
+{#:::::::::::::Inheritance Concept::::::::::::::::: #}
+{% extends 'core/base.html' %}
+
+{% block title %} Home Page {% endblock title %}
+
+{% block content %}
+    {% comment %}Below codes are written simply for displaying database value in required html page.{% endcomment %}
+    <div style="text-align: center;">
+        {% if todo %} 
+            {% comment %} 
+                if todo ==> means that if todo exist in which todo's values are in list 
+                form refers that if todo consist some values on it, then if loop will be executed.
+            {% endcomment %}
+            {% for todo in todo%} 
+                <h3>{{todo.title}}</h3>
+                <h5>{{todo.content}}</h5>
+                <!-- ::::::::::For 'id' concept ==>> <small>{{todo.id}}</small> :::::::::: -->
+                <a href="{% url 'edit' id=todo.id %}">edit</a>
+
+                {% comment %} 
+                    Here, 'id=todo.id' means that 'id' is an argument refers to 'id' of TODO database table 
+                    and 'todo.id' refers to TODO database table's 'id value'.
+                {% endcomment %}
+                <a href="{% url 'delete' id=todo.id %}">delete</a> 
+                <hr> <!-- Here, hr simply printed out the horizontal line -->
+            {% endfor %}
+        {% else %}
+            <h3>No TODO items found!!!!</h3>
+        {% endif %}
+    </div>
+    <a class="btn btn-primary" style="margin-left: 47%;" href="{% url 'add' %}">Add</a>
+{% endblock content %}
